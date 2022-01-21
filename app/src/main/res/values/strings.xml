@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">LNMIIT Management</string>
+
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Time Table Generation</string>
+    <string name="slide_1_desc">Generate the time-table at one click.</string>
+
+    <string name="slide_2_title">Bus Management</string>
+    <string name="slide_2_desc">Check the schedule of the bus, book a seat in the bus at one click.</string>
+
+    <string name="slide_3_title">Dispensary Management</string>
+    <string name="slide_3_desc">Manage the drugs in the dispensary at one click.</string>
+
+    <string name="slide_4_title">Leave Management</string>
+    <string name="slide_4_desc">Ask for a leave at one click.</string>
 </resources>
