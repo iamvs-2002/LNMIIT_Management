@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/drawable/bg_drawer.xml" value="0.26614583333333336" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/drawable/onboardingleft.xml" value="0.26614583333333336" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/drawable/onboardingright.xml" value="0.26614583333333336" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/drawable/splash_background.xml" value="0.26614583333333336" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/homepage/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/homepage/layout/module_item.xml" value="0.264" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_time_table.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/welcome/layout/activity_onboarding.xml" value="0.264" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/welcome/layout/activity_splash.xml" value="0.264" />
@@ -16,6 +18,8 @@
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/welcome/layout/screen2.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/welcome/layout/screen3.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/welcome/layout/screen4.xml" value="0.25" />
+        <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/menu/drawermenu.xml" value="0.4" />
+        <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/menu/drawermenu_home.xml" value="0.2" />
       </map>
     </option>
   </component>

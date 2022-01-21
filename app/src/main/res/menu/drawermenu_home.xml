@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_timetable"
+        android:title="Time Table"
+        android:icon="@drawable/timetable">
+    </item>
+    <item
+        android:id="@+id/menu_busservice"
+        android:title="Bus Service"
+        android:icon="@drawable/bus">
+    </item>
+    <item
+        android:id="@+id/menu_hostelleave"
+        android:title="Hostel Leave"
+        android:icon="@drawable/leave">
+    </item>
+    <item
+        android:id="@+id/menu_facultyleave"
+        android:title="Faculty/Staff Leave"
+        android:icon="@drawable/leave">
+    </item>
+    <item
+        android:id="@+id/menu_dispensary"
+        android:title="Dispensary"
+        android:icon="@drawable/dispensary">
+    </item>
+    <item
+        android:id="@+id/menu_shareapp"
+        android:title="Share Application"
+        android:icon="@drawable/share">
+    </item>
+    <item
+        android:id="@+id/menu_aboutus"
+        android:title="About Us"
+        android:icon="@drawable/aboutus">
+    </item>
+</menu>
