@@ -13,19 +13,24 @@
         android:theme="@style/Theme.LNMIITManagement">
         <activity
             android:name=".Modules.DispensaryManagement"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".HomePage.HomeActivity"/>
         <activity
             android:name=".Modules.StaffLeaveManagement"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".HomePage.HomeActivity"/>
         <activity
             android:name=".Modules.HostelLeaveManagement"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".HomePage.HomeActivity"/>
         <activity
-            android:name=".Modules.BusBooking"
-            android:exported="false" />
+            android:name=".Modules.BusService"
+            android:exported="false"
+            android:parentActivityName=".HomePage.HomeActivity"/>
         <activity
             android:name=".Modules.TimeTableGeneration"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".HomePage.HomeActivity"/>
         <activity
             android:name=".HomePage.HomeActivity"
             android:exported="false" />

@@ -11,7 +11,13 @@
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/homepage/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/homepage/layout/module_item.xml" value="0.264" />
+        <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_bus_service.xml" value="0.25" />
+        <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_dispensary_management.xml" value="0.25" />
+        <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_hostel_leave_management.xml" value="0.25" />
+        <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_staff_leave_management.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_time_table.xml" value="0.25" />
+        <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_time_table_generation.xml" value="0.25" />
+        <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/toolbar/layout/toolbar.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/welcome/layout/activity_onboarding.xml" value="0.264" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/welcome/layout/activity_splash.xml" value="0.264" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/welcome/layout/screen1.xml" value="0.2" />

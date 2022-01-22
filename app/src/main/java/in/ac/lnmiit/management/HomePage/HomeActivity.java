@@ -5,16 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import in.ac.lnmiit.management.Modules.BusService;
+import in.ac.lnmiit.management.Modules.DispensaryManagement;
+import in.ac.lnmiit.management.Modules.HostelLeaveManagement;
+import in.ac.lnmiit.management.Modules.StaffLeaveManagement;
+import in.ac.lnmiit.management.Modules.TimeTableGeneration;
 import in.ac.lnmiit.management.R;
 
 /*
@@ -35,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        toolbar = findViewById(R.id.home_toolbar);
+        toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.home_drawerLayout);
         navigationView = findViewById(R.id.home_navBar);
         webView = findViewById(R.id.home_webView);
@@ -51,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         toolbarSetup();
     }
     private void toolbarSetup() {
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,23 +72,23 @@ public class HomeActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.menu_timetable:
                         drawerLayout.closeDrawer(Gravity.LEFT);
-                        Toast.makeText(getApplicationContext(), "Time Table", Toast.LENGTH_SHORT).show();
+                        sendUserToActivity(TimeTableGeneration.class);
                         break;
                     case R.id.menu_busservice:
                         drawerLayout.closeDrawer(Gravity.LEFT);
-                        Toast.makeText(getApplicationContext(), "Bus Service", Toast.LENGTH_SHORT).show();
+                        sendUserToActivity(BusService.class);
                         break;
                     case R.id.menu_dispensary:
                         drawerLayout.closeDrawer(Gravity.LEFT);
-                        Toast.makeText(getApplicationContext(), "Dispensary", Toast.LENGTH_SHORT).show();
+                        sendUserToActivity(DispensaryManagement.class);
                         break;
                     case R.id.menu_facultyleave:
                         drawerLayout.closeDrawer(Gravity.LEFT);
-                        Toast.makeText(getApplicationContext(), "Faculty/Staff Leave", Toast.LENGTH_SHORT).show();
+                        sendUserToActivity(StaffLeaveManagement.class);
                         break;
                     case R.id.menu_hostelleave:
                         drawerLayout.closeDrawer(Gravity.LEFT);
-                        Toast.makeText(getApplicationContext(), "Hostel Leave", Toast.LENGTH_SHORT).show();
+                        sendUserToActivity(HostelLeaveManagement.class);
                         break;
                     case R.id.menu_shareapp:
                         drawerLayout.closeDrawer(Gravity.LEFT);
@@ -95,6 +102,11 @@ public class HomeActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void sendUserToActivity(Class<? extends Activity> activityClass){
+        Intent intent = new Intent(HomeActivity.this, activityClass);
+        startActivity(intent);
     }
 
     private long pressedTime;
