@@ -7,7 +7,124 @@
     android:layout_height="match_parent"
     tools:context=".Modules.TimeTableGeneration">
 
+    <ProgressBar
+        android:id="@+id/timetableProgressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/progress">
+    </ProgressBar>
+
     <include
+        android:id="@+id/timetable_toolbar_layout"
         layout="@layout/toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/timetable_toolbar_layout"
+        android:layout_above="@id/generateTimeTablebtn">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_height="wrap_content"
+                android:text="Semester">
+            </TextView>
+            <Spinner
+                android:layout_marginLeft="20dp"
+                android:paddingHorizontal="10dp"
+                android:id="@+id/semester_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Spinner>
+        </LinearLayout>
+        <LinearLayout
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_height="wrap_content"
+                android:text="Program">
+            </TextView>
+            <Spinner
+                android:layout_marginLeft="20dp"
+                android:paddingHorizontal="10dp"
+                android:id="@+id/program_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Spinner>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/selectexcelfilebtn"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_baseline_add_box_24"
+            android:background="@android:color/transparent"
+            app:tint="@color/black">
+        </ImageButton>
+        <TextView
+            android:id="@+id/excelFileName"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/gray"
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Attach Excel File">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/generateTimeTablebtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_drawer"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:text="Generate">
+        </androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/historybtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_drawer"
+            android:layout_marginBottom="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:text="History">
+        </androidx.appcompat.widget.AppCompatButton>
+    </LinearLayout>
+
+
 
 </RelativeLayout>
