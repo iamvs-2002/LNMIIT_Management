@@ -17,6 +17,7 @@ public class Graph {
             graph.put(i, new TreeSet<>());
         }
     }
+
     // Adds an edge to an undirected graph
     public void addEdge(int src, int dest) {
         // Add an edge from src to dest into the set
@@ -25,8 +26,9 @@ public class Graph {
         // from dest to src into the set
         graph.get(dest).add(src);
     }
+
     public static int Findclique(int no_of_subject) {
-        Log.e("TAG","Inside find clique");
+        // Log.e("TAG","Inside find clique");
         int v = no_of_subject;
         visited = new boolean[v + 1];
         int subject = 1;
@@ -43,12 +45,12 @@ public class Graph {
                 makeclique(subject, clique);
                 count++;
                 subject++;
-                System.out.println("clique " + count + ":");
+                Log.e("TAG", "clique " + count + ":");
                 while (!clique.isEmpty()) {
-                    System.out.print(clique.pop() + " ");
+                    Log.e("TAG", clique.pop() + " ");
                 }
 
-                System.out.println(" ");
+                Log.e("TAG", "\n");
                 for (int i = 1; i <= no_of_subject; i++) {
                     if (graph.containsKey(i))
                         V.put(i, graph.get(i).size());
@@ -59,7 +61,7 @@ public class Graph {
     }
 
     public static void makeclique(int subject, Stack<Integer> clique) {
-        Log.e("TAG","Inside make clique");
+        // Log.e("TAG","Inside make clique");
         clique.add(subject);
         visited[subject] = true;
         Map<Integer, Integer> adjacent = FindAdjacent(subject);
