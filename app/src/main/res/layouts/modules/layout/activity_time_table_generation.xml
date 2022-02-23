@@ -9,12 +9,11 @@
 
     <ProgressBar
         android:id="@+id/timetableProgressBar"
-        android:visibility="gone"
+        android:visibility="invisible"
+        android:indeterminate="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:indeterminate="true"
-        android:indeterminateDrawable="@drawable/progress">
+        android:layout_centerInParent="true">
     </ProgressBar>
 
     <include
@@ -23,16 +22,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/timetable_toolbar_layout"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/timetable_btns_layout"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_marginHorizontal="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="30dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dp">
@@ -42,30 +43,32 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:text="Academic Year"
-                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/timetable_year_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="2022"
                 android:layout_marginLeft="20dp"
+                android:hint="2022"
                 android:paddingHorizontal="10dp"
                 android:textColor="@color/black"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginHorizontal="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="30dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dp">
@@ -75,27 +78,29 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:text="Semester"
-                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
+
             <Spinner
                 android:id="@+id/semester_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
                 android:layout_marginLeft="20dp"
-                android:paddingHorizontal="10dp"/>
+                android:fontFamily="sans-serif-black"
+                android:paddingHorizontal="10dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginHorizontal="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="30dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dp">
@@ -105,20 +110,22 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:text="Program"
-                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
+
             <Spinner
                 android:id="@+id/program_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
                 android:layout_marginLeft="20dp"
-                android:paddingHorizontal="10dp"/>
+                android:fontFamily="sans-serif-black"
+                android:paddingHorizontal="10dp" />
         </LinearLayout>
 
         <ImageButton
@@ -126,11 +133,11 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
             android:scaleType="fitXY"
             android:src="@drawable/ic_baseline_add_box_24"
-            app:tint="@color/black"/>
+            app:tint="@color/black" />
 
         <TextView
             android:id="@+id/excelFileName"
@@ -140,32 +147,125 @@
             android:fontFamily="sans-serif-light"
             android:text="Attach Excel File"
             android:textColor="@color/gray"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
+
+        <ScrollView
+            android:layout_marginTop="30dp"
+            android:id="@+id/timetable_result_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:paddingVertical="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Total number of subjects: "
+                        android:textColor="@color/black"
+                        android:textSize="18sp"/>
+                    <TextView
+                        android:id="@+id/timetable_subjects_count_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Total number of cliques: "
+                        android:textColor="@color/black"
+                        android:textSize="18sp"/>
+                    <TextView
+                        android:id="@+id/timetable_cliques_count_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/timetable_result_tv"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text=""
+                    android:layout_gravity="center"
+                    android:lineSpacingExtra="5dp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+        </ScrollView>
+
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/timetable_btns_layout"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="5dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/generateTimeTablebtn"
-            android:layout_width="match_parent"
+            android:elevation="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/AliceBlue"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="5dp"
             android:background="@drawable/bg_drawer"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
             android:text="Generate">
         </androidx.appcompat.widget.AppCompatButton>
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/historybtn"
-            android:layout_width="match_parent"
+            android:id="@+id/savebtn"
+            android:layout_weight="1"
+            android:elevation="0dp"
+            android:backgroundTint="@color/AliceBlue"
+            android:layout_marginHorizontal="5dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_drawer"
-            android:layout_marginBottom="10dp"
-            android:layout_marginHorizontal="20dp"
-            android:text="History">
+            android:text="Save">
         </androidx.appcompat.widget.AppCompatButton>
     </LinearLayout>
 

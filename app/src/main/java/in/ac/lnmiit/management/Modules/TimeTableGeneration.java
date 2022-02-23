@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
+
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.database.Cursor;
@@ -15,10 +16,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
@@ -26,7 +30,6 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import java.io.*;
 import java.util.*;
 
-import in.ac.lnmiit.management.Modules.Classes.Graph;
 import in.ac.lnmiit.management.R;
 
 public class TimeTableGeneration extends AppCompatActivity {
@@ -35,12 +38,14 @@ public class TimeTableGeneration extends AppCompatActivity {
     String[] semesters = {"Odd", "Even"};
     String[] programs = {"UG", "PG", "PhD"};
     Spinner semestersSpinner, programsSpinner;
-    AppCompatButton generateTimeTablebtn, historybtn;
+    AppCompatButton generateTimeTablebtn, savebtn;
     ImageButton selectexcelfilebtn;
-    TextView excelFileName,timetable_year_tv;
+    TextView excelFileName, timetable_year_tv, timetable_cliques_count_tv, timetable_result_tv, timetable_subjects_count_tv;
     static boolean isFileSelected;
     ProgressBar timetableProgressBar;
     static File file;
+    ScrollView timetable_result_view;
+    static HSSFSheet sheet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +59,19 @@ public class TimeTableGeneration extends AppCompatActivity {
         semestersSpinner = findViewById(R.id.semester_spinner);
         programsSpinner = findViewById(R.id.program_spinner);
         generateTimeTablebtn = findViewById(R.id.generateTimeTablebtn);
-        historybtn = findViewById(R.id.historybtn);
+        savebtn = findViewById(R.id.savebtn);
         selectexcelfilebtn = findViewById(R.id.selectexcelfilebtn);
         excelFileName = findViewById(R.id.excelFileName);
         timetableProgressBar = findViewById(R.id.timetableProgressBar);
         timetable_year_tv = findViewById(R.id.timetable_year_tv);
+        timetable_cliques_count_tv = findViewById(R.id.timetable_cliques_count_tv);
+        timetable_result_tv = findViewById(R.id.timetable_result_tv);
+        timetable_result_view = findViewById(R.id.timetable_result_view);
+        timetable_subjects_count_tv = findViewById(R.id.timetable_subjects_count_tv);
 
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        timetable_year_tv.setText(year+" - "+(year+1));
+        timetable_year_tv.setText(year + " - " + (year + 1));
 
         //Creating the ArrayAdapter instance having the semesters name list
         ArrayAdapter semestersAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, semesters);
@@ -79,9 +88,7 @@ public class TimeTableGeneration extends AppCompatActivity {
         selectexcelfilebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                timetableProgressBar.setVisibility(View.VISIBLE);
                 selectfile();
-                timetableProgressBar.setVisibility(View.GONE);
             }
         });
 
@@ -110,11 +117,15 @@ public class TimeTableGeneration extends AppCompatActivity {
             }
         });
 
-        historybtn.setOnClickListener(new View.OnClickListener() {
+        savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // show history in an alert dialog box
-                Toast.makeText(TimeTableGeneration.this, "History button clicked", Toast.LENGTH_SHORT).show();
+                if (Graph.res==null || Graph.res.toString().isEmpty()){
+                    Toast.makeText(TimeTableGeneration.this, "Kindly generate the time table first.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Toast.makeText(TimeTableGeneration.this, "Save button clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -174,53 +185,206 @@ public class TimeTableGeneration extends AppCompatActivity {
 
     void findCliques(File file) {
         timetableProgressBar.setVisibility(View.VISIBLE);
-        Map<String, TreeSet<String>> courses = new HashMap<>();
         // Create the graph given in the above figure
         try {
             Log.e("TAG", "Finding Cliques");
-            int[] res = readExcelFile(file);
+            InputStream myInput;
+            // initialize asset manager
+            AssetManager assetManager = getAssets();
+            //  open excel file name as timetable.xls
+            myInput = assetManager.open("timetable.xls");
+            // Create a POI File System object
+            POIFSFileSystem myFileSystem = new POIFSFileSystem(myInput);
 
-            int row = res[0];
-            int col = res[1];
-            int v = col; // number of subjects
+            // FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file
 
+            // Create a POIFSFileSystem object
+            // POIFSFileSystem myFileSystem = new POIFSFileSystem(fis);
+
+            // Creating Workbook instance that refers to .xls file
+            HSSFWorkbook wb = new HSSFWorkbook(myFileSystem);
+            sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object
+
+            Log.e("TAG", "workbook sheet");
+            int rows = sheet.getLastRowNum();
+            int cols = sheet.getRow(1).getLastCellNum();
+
+            Map<Integer, LinkedHashSet<String>> courses = new HashMap<>();
+
+            for (int i = 1; i <= cols; i++) {
+                courses.put(i, new LinkedHashSet<>());
+            }
+            for (int r = 1; r <= rows; r++) {
+                HSSFRow row = sheet.getRow(r);
+                for (int c = 0; c < cols; c++) {
+                    HSSFCell cell = row.getCell((short) c);
+                    if (cell != null) {
+                        switch (cell.getCellType()) {
+                            case HSSFCell.CELL_TYPE_STRING:
+                                String rollNumber = row.getCell((short) c).getStringCellValue();
+                                courses.get(c + 1).add(rollNumber);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+
+            int v = cols;
             Graph graph = new Graph(v);
 
+            for (int i = 1; i < v; i++) {
+                LinkedHashSet<String> setx = courses.get(i);
+                for (int j = i + 1; j <= v; j++) {
+                    LinkedHashSet<String> setY = courses.get(j);
+                    Iterator<String> iteratorx = setx.iterator();
+                    Map<String, Integer> compare = new HashMap<>();
+
+                    while (iteratorx.hasNext()) {
+                        compare.put(iteratorx.next(), 0);
+                    }
+
+                    Iterator<String> iteratorY = setY.iterator();
+                    boolean flag = false;
+
+                    while (iteratorY.hasNext()) {
+                        String s = iteratorY.next();
+                        if (compare.containsKey(s)) {
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if (flag == false) {
+                        graph.addEdge(i, j);
+                    }
+                }
+            }
+
             int cliq = Graph.Findclique(v);
-            Log.e("TAG", "Total number of clique: "+cliq);
+
+            timetable_subjects_count_tv.setText(v+"");
+            timetable_cliques_count_tv.setText(cliq+"");
+            timetable_result_tv.setText(Graph.res.toString());
+            timetable_result_view.setVisibility(View.VISIBLE);
+
+            Log.e("TAG", "Total number of clique: " + cliq);
             Toast.makeText(TimeTableGeneration.this, "Total number of clique: " + cliq, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.e("TAG", "Some error while reading excel file" + e);
             e.printStackTrace();
         }
-        timetableProgressBar.setVisibility(View.GONE);
+        timetableProgressBar.setVisibility(View.INVISIBLE);
+    }
+}
+
+class Graph {
+    static StringBuilder res;
+    // TreeSet is used to get clear
+    // understand of graph.
+    static HashMap<Integer, TreeSet<Integer>> graph;
+    static HSSFRow header;
+
+    // Graph Constructor
+    public Graph(int v) {
+        graph = new HashMap<>();
+        header = TimeTableGeneration.sheet.getRow(0);
+        res = new StringBuilder();
+        for (int i = 1; i <= v; i++) {
+            graph.put(i, new TreeSet<>());
+        }
     }
 
-    private int[] readExcelFile(File file) throws IOException {
-        InputStream myInput;
-        // initialize asset manager
-        AssetManager assetManager = getAssets();
-        //  open excel file name as timetable.xls
-        myInput = assetManager.open("timetable.xls");
-        // Create a POI File System object
-        POIFSFileSystem myFileSystem = new POIFSFileSystem(myInput);
+    // Adds an edge to an undirected graph
+    public void addEdge(int src, int dest) {
+        // Add an edge from src to dest into the set
+        graph.get(src).add(dest);
 
-        // FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file
+        // Since graph is undirected, add an edge
+        // from dest to src into the set
+        graph.get(dest).add(src);
+    }
 
-        // Create a POIFSFileSystem object
-        // POIFSFileSystem myFileSystem = new POIFSFileSystem(fis);
+    public static boolean[] visited;
+    static Map<Integer, Integer> V = new HashMap<>();
 
-        // Creating Workbook instance that refers to .xls file
-        HSSFWorkbook wb = new HSSFWorkbook(myFileSystem);
-        HSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object
+    public static int Findclique(int no_of_subject) {
+        int v = no_of_subject;
+        visited = new boolean[v + 1];
+        int subject = 1;
+        int count = 0;
+        for (int i = 1; i <= no_of_subject; i++) {
+            if (graph.containsKey(i))
+                V.put(i, graph.get(i).size());
+        }
 
-        Log.e("TAG", "workbook sheet");
-        int row = sheet.getLastRowNum();
-        int col = sheet.getRow(1).getLastCellNum();
+        while (subject <= no_of_subject) {
+            if (visited[subject]) {
+                subject++;
+            } else {
+                Stack<Integer> clique = new Stack<Integer>();
+                makeclique(subject, clique);
+                count++;
+                subject++;
+                res.append("Clique ").append(count).append(": ");
+                Log.e("TAG", "clique " + count + ":");
+                while (!clique.isEmpty()) {
+                    int c = clique.pop();
+                    String subj = header.getCell((short) (c-1)).getStringCellValue();
+                    res.append(subj).append(" ");
+                    Log.e("TAG",subj + " ");
+                }
+                res.append("\n");
+                Log.e("TAG", "\n");
+                //update V
+                for (int i = 1; i <= no_of_subject; i++) {
+                    if (graph.containsKey(i) && !visited[i])
+                        V.put(i, graph.get(i).size());
+                }
+            }
+        }
+        return count;
+    }
 
-        int[] res = new int[2];
-        res[0] = row;
-        res[1] = col;
-        return res;
+    public static void makeclique(int subject, Stack<Integer> clique) {
+        clique.add(subject);
+        visited[subject] = true;
+        Map<Integer, Integer> adjacent = FindAdjacent(subject);
+
+        Map<Integer, Integer> newV = new HashMap<>();
+
+        for (Map.Entry<Integer, Integer> entry : adjacent.entrySet()) {
+            int x = entry.getKey();
+            if (V.containsKey(x)) {
+                newV.put(x, entry.getValue());
+            }
+
+        }
+        V = newV;
+        if (!V.isEmpty()) {
+            int max_degree_node = Integer.MIN_VALUE;
+            for (Map.Entry<Integer, Integer> entry : V.entrySet()) {
+                if (entry.getValue() > max_degree_node) {
+                    max_degree_node = entry.getKey();
+                }
+            }
+
+            makeclique(max_degree_node, clique);
+        }
+
+    }
+
+    public static Map<Integer, Integer> FindAdjacent(int subject) {
+        Map<Integer, Integer> adjacent = new HashMap<>();
+        if (graph.containsKey(subject)) {
+            Iterator<Integer> set = graph.get(subject).iterator();
+
+            while (set.hasNext()) {
+                int x = set.next();
+                adjacent.put(x, graph.get(x).size());
+            }
+        }
+        return adjacent;
     }
 }
