@@ -46,6 +46,7 @@ public class TimeTableGeneration extends AppCompatActivity {
     static File file;
     ScrollView timetable_result_view;
     static HSSFSheet sheet;
+    static int[] studentCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +131,56 @@ public class TimeTableGeneration extends AppCompatActivity {
         });
     }
 
+//    private void downloadFile() {
+//
+//        FirebaseStorage storage = FirebaseStorage.getInstance();
+//        StorageReference storageRef = storage.getReferenceFromUrl("https://firebasestorage.googleapis.com/v0/b/imagestore-b2432.appspot.com/o/Nature.jpg?alt=media&token=07d95162-45f8-424e-9658-8f9022485930");
+//
+//        ProgressDialog  pd = new ProgressDialog(this);
+//        pd.setTitle("Nature.jpg");
+//        pd.setMessage("Downloading Please Wait!");
+//        pd.setIndeterminate(true);
+//        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        pd.show();
+//
+//
+//        final File rootPath = new File(Environment.getExternalStorageDirectory(), "MADBO DOWNLOADS");
+//
+//        if (!rootPath.exists()) {
+//            rootPath.mkdirs();
+//        }
+//
+//
+//        final File localFile = new File(rootPath, "Nature.jpg");
+//
+//        storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener <FileDownloadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                Log.e("firebase ", ";local tem file created  created " + localFile.toString());
+//
+//                if (!isVisible()){
+//                    return;
+//                }
+//
+//                if (localFile.canRead()){
+//
+//                    pd.dismiss();
+//                }
+//
+//                Toast.makeText(this, "Download Completed", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Internal storage/MADBO/Nature.jpg", Toast.LENGTH_LONG).show();
+//
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception exception) {
+//                Log.e("firebase ", ";local tem file not created  created " + exception.toString());
+//                Toast.makeText(this, "Download Incompleted", Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
+
+
     private void selectfile() {
         // select the file from the file storage
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -164,6 +215,8 @@ public class TimeTableGeneration extends AppCompatActivity {
             }
         }
     }
+
+
 
     private String getFileName(Uri uri) throws IllegalArgumentException {
         // Obtain a cursor with information regarding this uri
@@ -209,6 +262,8 @@ public class TimeTableGeneration extends AppCompatActivity {
             int rows = sheet.getLastRowNum();
             int cols = sheet.getRow(1).getLastCellNum();
 
+            studentCount = new int[cols];
+
             Map<Integer, LinkedHashSet<String>> courses = new HashMap<>();
 
             for (int i = 1; i <= cols; i++) {
@@ -221,6 +276,7 @@ public class TimeTableGeneration extends AppCompatActivity {
                     if (cell != null) {
                         switch (cell.getCellType()) {
                             case HSSFCell.CELL_TYPE_STRING:
+                                studentCount[c]++;
                                 String rollNumber = row.getCell((short) c).getStringCellValue();
                                 courses.get(c + 1).add(rollNumber);
                                 break;
@@ -329,12 +385,18 @@ class Graph {
                 subject++;
                 res.append("Clique ").append(count).append(": ");
                 Log.e("TAG", "clique " + count + ":");
+                int totalStudents = 0;
                 while (!clique.isEmpty()) {
                     int c = clique.pop();
+                    int students = TimeTableGeneration.studentCount[c-1];
+                    totalStudents+=students;
                     String subj = header.getCell((short) (c-1)).getStringCellValue();
-                    res.append(subj).append(" ");
+                    res.append(subj).append("(").append(String.valueOf(students)).append(")").append(" ");
                     Log.e("TAG",subj + " ");
                 }
+                res.append("\n");
+                res.append("Total Students: ").append(totalStudents);
+                res.append("\n");
                 res.append("\n");
                 Log.e("TAG", "\n");
                 //update V
