@@ -116,7 +116,7 @@ public class TimeTableGeneration extends AppCompatActivity {
                     return;
                 }
                 if (!isFileSelected) {
-                    Toast.makeText(TimeTableGeneration.this, "Kindly select the excel file.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TimeTableGeneration.this, "Kindly select an excel file.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 timetableProgressBar.setVisibility(View.VISIBLE);
@@ -190,17 +190,6 @@ public class TimeTableGeneration extends AppCompatActivity {
 //            }
 //        });
 //    }
-
-    private boolean isPermissionGranted(){
-        for(String permission : permissions){
-            if (ActivityCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED)
-                return false;
-        }
-        return true;
-    }
-    private void askPermissions(){
-        ActivityCompat.requestPermissions(this, permissions, reqCode);
-    }
     private void selectfile() {
         // select the file from the file storage
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -228,7 +217,7 @@ public class TimeTableGeneration extends AppCompatActivity {
 
                 // String path = getFilesDir().getAbsolutePath();
 
-                File myFile = new File(downloadsPath + "/timetable.xls");
+                File myFile = new File(downloadsPath + "/"+ filename);
 
                 Log.e("TAG", "Path: " + uri.getPath());
                 Log.e("TAG", "Exists: " + myFile.exists());
@@ -372,6 +361,16 @@ public class TimeTableGeneration extends AppCompatActivity {
         super.onStart();
         if(!isPermissionGranted())
             askPermissions();
+    }
+    private boolean isPermissionGranted(){
+        for(String permission : permissions){
+            if (ActivityCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED)
+                return false;
+        }
+        return true;
+    }
+    private void askPermissions(){
+        ActivityCompat.requestPermissions(this, permissions, reqCode);
     }
 }
 
