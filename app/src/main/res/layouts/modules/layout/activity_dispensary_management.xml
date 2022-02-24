@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
                 <androidx.cardview.widget.CardView
                     android:id="@+id/student_dispensary_card_appointment"
                     android:layout_width="match_parent"
@@ -138,7 +138,7 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/doctor_dispensary_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -164,7 +164,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Appointment Status"
+                                android:text="Manage Appointments"
                                 android:textStyle="bold"
                                 android:textSize="18sp"
                                 android:textColor="@color/black"
@@ -179,15 +179,7 @@
                                 android:background="@android:color/transparent"
                                 android:layout_gravity="center"
                                 android:src="@drawable/notif_icon"/>
-
                         </LinearLayout>
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:clickable="false"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:orientation="vertical"
-                            android:id="@+id/doctor_dispensary_card_appointment_timing_recyclerView"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView

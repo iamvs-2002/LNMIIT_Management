@@ -32,6 +32,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import in.ac.lnmiit.management.Modules.Classes.DispensaryManagement.AppointmentStatusAdapter;
+import in.ac.lnmiit.management.Modules.Classes.DispensaryManagement.AppointmentStatusModel;
 import in.ac.lnmiit.management.Modules.Classes.DispensaryManagement.AppointmentTimingAdapter;
 import in.ac.lnmiit.management.Modules.Classes.DispensaryManagement.AppointmentTimingModel;
 import in.ac.lnmiit.management.R;
@@ -43,8 +45,9 @@ public class DispensaryManagement extends AppCompatActivity {
     CardView student_appointment, student_medicalcertificate, student_appointment_status, student_medicalcertificate_status;
     CardView doctor_appointment, doctor_medicalcertificate, doctor_stockstatus;
 
-    RecyclerView student_dispensary_card_appointment_timing_recyclerView, doctor_dispensary_card_appointment_timing_recyclerView;
+    RecyclerView student_dispensary_card_appointment_timing_recyclerView;
     static List<AppointmentTimingModel> appointmentTimingModelList;
+    static boolean isStudent = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +68,6 @@ public class DispensaryManagement extends AppCompatActivity {
         doctor_medicalcertificate = findViewById(R.id.doctor_dispensary_card_medicalcertificate);
         doctor_stockstatus = findViewById(R.id.doctor_dispensary_card_stockstatus);
         student_dispensary_card_appointment_timing_recyclerView = findViewById(R.id.student_dispensary_card_appointment_timing_recyclerView);
-        doctor_dispensary_card_appointment_timing_recyclerView = findViewById(R.id.doctor_dispensary_card_appointment_timing_recyclerView);
 
         appointmentTimingModelList = new ArrayList<>();
         appointmentTimingModelList = fillTimings();
@@ -76,9 +78,6 @@ public class DispensaryManagement extends AppCompatActivity {
         student_dispensary_card_appointment_timing_recyclerView.setLayoutManager(new LinearLayoutManager(this));
         student_dispensary_card_appointment_timing_recyclerView.setAdapter(adapter);
 
-        doctor_dispensary_card_appointment_timing_recyclerView.setHasFixedSize(true);
-        doctor_dispensary_card_appointment_timing_recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        doctor_dispensary_card_appointment_timing_recyclerView.setAdapter(adapter);
 
         student_appointment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +134,12 @@ public class DispensaryManagement extends AppCompatActivity {
     }
 
     private void showAlertDialogBox(int n) {
+        // Calender object to get current date
+        final Calendar c = Calendar.getInstance();
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Name");
         builder.setCancelable(false);
@@ -147,6 +152,7 @@ public class DispensaryManagement extends AppCompatActivity {
                 customLayout = getLayoutInflater().inflate(R.layout.student_appointment, null);
                 builder.setView(customLayout);
 
+                TextInputEditText student_appointment_date = customLayout.findViewById(R.id.student_appointment_date);
                 RadioGroup studentAppointmentRadioGroup = customLayout.findViewById(R.id.student_appointment_radioGroup);
                 studentAppointmentRadioGroup.setOrientation(LinearLayout.VERTICAL);
                 for (int i = 0; i < appointmentTimingModelList.size(); i++) {
@@ -158,13 +164,28 @@ public class DispensaryManagement extends AppCompatActivity {
                 }
                 TextInputEditText studentAppointmentMedicalIssueEditText = customLayout.findViewById(R.id.student_appointment_medical_issue_tv);
 
+                student_appointment_date.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        DatePickerDialog datePickerDialog = new DatePickerDialog(DispensaryManagement.this,
+                                new DatePickerDialog.OnDateSetListener() {
+                                    @Override
+                                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                        student_appointment_date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                    }
+                                }, mYear, mMonth, mDay);
+                        datePickerDialog.show();
+                    }
+                });
+
                 // add the button
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         int selectedId = studentAppointmentRadioGroup.getCheckedRadioButtonId();
                         String medicalIssue = studentAppointmentMedicalIssueEditText.getText().toString();
-                        if(selectedId==-1){
+                        String date = student_appointment_date.getText().toString();
+                        if(selectedId==-1 || date.isEmpty() || medicalIssue.isEmpty()){
                             Toast.makeText(DispensaryManagement.this, "Kindly select a timing", Toast.LENGTH_SHORT).show();
                         }
                         else {
@@ -182,12 +203,6 @@ public class DispensaryManagement extends AppCompatActivity {
                 TextInputEditText studentMedCertMedicalIssueEditText = customLayout.findViewById(R.id.student_medcert_medical_issue_tv);
                 TextInputEditText studentMedCertStartDateEditText = customLayout.findViewById(R.id.student_medcert_start_date);
                 TextInputEditText studentMedCertEndDateEditText = customLayout.findViewById(R.id.student_medcert_end_date);
-
-                // Calender object to get the current date
-                final Calendar c = Calendar.getInstance();
-                int mYear = c.get(Calendar.YEAR);
-                int mMonth = c.get(Calendar.MONTH);
-                int mDay = c.get(Calendar.DAY_OF_MONTH);
 
                 studentMedCertStartDateEditText.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -240,6 +255,16 @@ public class DispensaryManagement extends AppCompatActivity {
                 builder.setTitle("Appointment Status");
                 customLayout = getLayoutInflater().inflate(R.layout.student_appointment_status, null);
                 builder.setView(customLayout);
+
+                List<AppointmentStatusModel> appointmentStatusModelList = new ArrayList<>();
+                appointmentStatusModelList = getAppointmentStatusList();
+
+                RecyclerView student_dispensary_appointment_status_recyclerView = customLayout.findViewById(R.id.student_dispensary_appointment_status_recyclerView);
+                AppointmentStatusAdapter adapter = new AppointmentStatusAdapter(this, appointmentStatusModelList, isStudent);
+                student_dispensary_appointment_status_recyclerView.setHasFixedSize(true);
+                student_dispensary_appointment_status_recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                student_dispensary_appointment_status_recyclerView.setAdapter(adapter);
+
                 break;
             case 3:
                 builder.setTitle("Medical Certificate Status");
@@ -251,12 +276,15 @@ public class DispensaryManagement extends AppCompatActivity {
                 builder.setTitle("Manage Appointments");
                 customLayout = getLayoutInflater().inflate(R.layout.doctor_appointment, null);
                 builder.setView(customLayout);
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                });
+                List<AppointmentStatusModel> appointmentStatusModelList2 = new ArrayList<>();
+                appointmentStatusModelList2 = getAppointmentStatusList();
+
+                RecyclerView doctor_dispensary_appointment_status_recyclerView = customLayout.findViewById(R.id.doctor_dispensary_appointment_status_recyclerView);
+                AppointmentStatusAdapter adapter2 = new AppointmentStatusAdapter(this, appointmentStatusModelList2, isStudent);
+                doctor_dispensary_appointment_status_recyclerView.setHasFixedSize(true);
+                doctor_dispensary_appointment_status_recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                doctor_dispensary_appointment_status_recyclerView.setAdapter(adapter2);
                 break;
             case 11:
                 // Toast.makeText(this, "Doctor Medical Certificate", Toast.LENGTH_SHORT).show();
@@ -288,6 +316,17 @@ public class DispensaryManagement extends AppCompatActivity {
         dialog.show();
     }
 
+    private List<AppointmentStatusModel> getAppointmentStatusList() {
+        List<AppointmentStatusModel> list = new ArrayList<>();
+        list.add(new AppointmentStatusModel("Name", "Email", "Issue", "Date", "Time", false));
+        list.add(new AppointmentStatusModel("Name", "Email", "Issue", "Date", "Time", true));
+        list.add(new AppointmentStatusModel("Name", "Email", "Issue", "Date", "Time", true));
+        list.add(new AppointmentStatusModel("Name", "Email", "Issue", "Date", "Time", false));
+        list.add(new AppointmentStatusModel("Name", "Email", "Issue", "Date", "Time", false));
+
+        return list;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -300,10 +339,12 @@ public class DispensaryManagement extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.dispensary_doctor_login_menuoption:
+                isStudent = false;
                 doctorLayout.setVisibility(View.VISIBLE);
                 studentLayout.setVisibility(View.GONE);
                 return true;
             case R.id.dispensary_student_login_menuoption:
+                isStudent = true;
                 doctorLayout.setVisibility(View.GONE);
                 studentLayout.setVisibility(View.VISIBLE);
                 return true;
@@ -311,7 +352,6 @@ public class DispensaryManagement extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
     static long findDifference(String start_date, String end_date) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");

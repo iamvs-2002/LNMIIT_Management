@@ -5,13 +5,16 @@
       <map>
         <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/drawable/notif_icon.xml" value="0.1415" />
         <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/drawable/progress.xml" value="0.129" />
-        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/dispensary_alertdialog/layout/student_appointment.xml" value="0.2" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/dispensary_alertdialog/layout/doctor_appointment.xml" value="0.20471014492753623" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/dispensary_alertdialog/layout/student_appointment.xml" value="0.176" />
         <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/dispensary_alertdialog/layout/student_appointment_status.xml" value="0.20471014492753623" />
         <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/dispensary_alertdialog/layout/student_medicalcertificate.xml" value="0.2" />
         <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/dispensary_alertdialog/layout/student_medicalcertificate_status.xml" value="0.20471014492753623" />
         <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/layout/student_appointment.xml" value="0.20471014492753623" />
         <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_dispensary_management.xml" value="0.176" />
         <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_time_table_generation.xml" value="0.2" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/dispensary_doctor_manageappointments_item.xml" value="0.152" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/dispensary_student_appointmentstatus_item.xml" value="0.264" />
         <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/layout_appointment_timing_item.xml" value="0.20471014492753623" />
         <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/menu/dispensarymenu.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/drawable/bg_drawer.xml" value="0.26614583333333336" />
