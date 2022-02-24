@@ -36,6 +36,8 @@ import in.ac.lnmiit.management.Modules.Classes.DispensaryManagement.AppointmentS
 import in.ac.lnmiit.management.Modules.Classes.DispensaryManagement.AppointmentStatusModel;
 import in.ac.lnmiit.management.Modules.Classes.DispensaryManagement.AppointmentTimingAdapter;
 import in.ac.lnmiit.management.Modules.Classes.DispensaryManagement.AppointmentTimingModel;
+import in.ac.lnmiit.management.Modules.Classes.DispensaryManagement.MedCertificateStatusAdapter;
+import in.ac.lnmiit.management.Modules.Classes.DispensaryManagement.MedCertificateStatusModel;
 import in.ac.lnmiit.management.R;
 
 public class DispensaryManagement extends AppCompatActivity {
@@ -69,9 +71,17 @@ public class DispensaryManagement extends AppCompatActivity {
         doctor_stockstatus = findViewById(R.id.doctor_dispensary_card_stockstatus);
         student_dispensary_card_appointment_timing_recyclerView = findViewById(R.id.student_dispensary_card_appointment_timing_recyclerView);
 
+        if (isStudent){
+            doctorLayout.setVisibility(View.GONE);
+            studentLayout.setVisibility(View.VISIBLE);
+        }
+        else{
+            doctorLayout.setVisibility(View.VISIBLE);
+            studentLayout.setVisibility(View.GONE);
+        }
+
         appointmentTimingModelList = new ArrayList<>();
         appointmentTimingModelList = fillTimings();
-
         // set adapter
         AppointmentTimingAdapter adapter = new AppointmentTimingAdapter(this, appointmentTimingModelList);
         student_dispensary_card_appointment_timing_recyclerView.setHasFixedSize(true);
@@ -159,7 +169,8 @@ public class DispensaryManagement extends AppCompatActivity {
                     RadioButton rdbtn = new RadioButton(this);
                     // rdbtn.setId(View.generateViewId());
                     rdbtn.setId(i);
-                    rdbtn.setText(appointmentTimingModelList.get(rdbtn.getId()).getDoctorTiming());
+                    String s = appointmentTimingModelList.get(rdbtn.getId()).getDoctorName()+" ("+appointmentTimingModelList.get(rdbtn.getId()).getDoctorTiming()+")";
+                    rdbtn.setText(s);
                     studentAppointmentRadioGroup.addView(rdbtn);
                 }
                 TextInputEditText studentAppointmentMedicalIssueEditText = customLayout.findViewById(R.id.student_appointment_medical_issue_tv);
@@ -186,7 +197,7 @@ public class DispensaryManagement extends AppCompatActivity {
                         String medicalIssue = studentAppointmentMedicalIssueEditText.getText().toString();
                         String date = student_appointment_date.getText().toString();
                         if(selectedId==-1 || date.isEmpty() || medicalIssue.isEmpty()){
-                            Toast.makeText(DispensaryManagement.this, "Kindly select a timing", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DispensaryManagement.this, "No field can be empty", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             Toast.makeText(DispensaryManagement.this, "Medical Issue: "+medicalIssue+"\nSelected Timing: "+appointmentTimingModelList.get(selectedId).getDoctorTiming(), Toast.LENGTH_SHORT).show();
@@ -270,6 +281,15 @@ public class DispensaryManagement extends AppCompatActivity {
                 builder.setTitle("Medical Certificate Status");
                 customLayout = getLayoutInflater().inflate(R.layout.student_medicalcertificate_status, null);
                 builder.setView(customLayout);
+
+                List<MedCertificateStatusModel> medCertificateStatusModelList = new ArrayList<>();
+                medCertificateStatusModelList = getMedCertificateStatusList();
+
+                RecyclerView student_dispensary_medcert_status_recyclerView = customLayout.findViewById(R.id.student_dispensary_medcert_status_recyclerView);
+                MedCertificateStatusAdapter adapterb = new MedCertificateStatusAdapter(this, medCertificateStatusModelList, isStudent);
+                student_dispensary_medcert_status_recyclerView.setHasFixedSize(true);
+                student_dispensary_medcert_status_recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                student_dispensary_medcert_status_recyclerView.setAdapter(adapterb);
                 break;
             case 10:
                 // Toast.makeText(this, "Doctor Appointment", Toast.LENGTH_SHORT).show();
@@ -285,16 +305,32 @@ public class DispensaryManagement extends AppCompatActivity {
                 doctor_dispensary_appointment_status_recyclerView.setHasFixedSize(true);
                 doctor_dispensary_appointment_status_recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 doctor_dispensary_appointment_status_recyclerView.setAdapter(adapter2);
+
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(DispensaryManagement.this, "Update DB", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 break;
             case 11:
                 // Toast.makeText(this, "Doctor Medical Certificate", Toast.LENGTH_SHORT).show();
                 builder.setTitle("Manage Medical Certificates");
                 customLayout = getLayoutInflater().inflate(R.layout.doctor_medicalcertificate, null);
                 builder.setView(customLayout);
+                List<MedCertificateStatusModel> medCertificateStatusModelList2 = new ArrayList<>();
+                medCertificateStatusModelList = getMedCertificateStatusList();
+
+                RecyclerView doctor_dispensary_medcert_status_recyclerView = customLayout.findViewById(R.id.doctor_dispensary_medcert_status_recyclerView);
+                MedCertificateStatusAdapter adapterb2 = new MedCertificateStatusAdapter(this, medCertificateStatusModelList, isStudent);
+                doctor_dispensary_medcert_status_recyclerView.setHasFixedSize(true);
+                doctor_dispensary_medcert_status_recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                doctor_dispensary_medcert_status_recyclerView.setAdapter(adapterb2);
+
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(DispensaryManagement.this, "Update DB", Toast.LENGTH_SHORT).show();
                     }
                 });
                 break;
@@ -314,6 +350,17 @@ public class DispensaryManagement extends AppCompatActivity {
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private List<MedCertificateStatusModel> getMedCertificateStatusList() {
+        List<MedCertificateStatusModel> list = new ArrayList<>();
+        list.add(new MedCertificateStatusModel("Name", "Email", "StartDate", "EndDate", "Days", "Issue", false));
+        list.add(new MedCertificateStatusModel("Name", "Email", "StartDate", "EndDate", "Days", "Issue", false));
+        list.add(new MedCertificateStatusModel("Name", "Email", "StartDate", "EndDate", "Days", "Issue", true));
+        list.add(new MedCertificateStatusModel("Name", "Email", "StartDate", "EndDate", "Days", "Issue", true));
+        list.add(new MedCertificateStatusModel("Name", "Email", "StartDate", "EndDate", "Days", "Issue", false));
+
+        return list;
     }
 
     private List<AppointmentStatusModel> getAppointmentStatusList() {
