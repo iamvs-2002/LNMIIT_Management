@@ -23,10 +23,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/timetable_btns_layout"
         android:layout_below="@+id/timetable_toolbar_layout"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
-        android:layout_above="@+id/timetable_btns_layout"
         android:orientation="vertical">
 
         <LinearLayout
@@ -150,19 +150,20 @@
             android:textSize="16sp" />
 
         <ScrollView
-            android:layout_marginTop="30dp"
             android:id="@+id/timetable_result_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="invisible"
-            android:scrollbars="vertical">
+            android:layout_marginTop="30dp"
+            android:fadeScrollbars="false"
+            android:scrollbars="vertical"
+            android:visibility="invisible">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:paddingVertical="5dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingVertical="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -172,25 +173,28 @@
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="5dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
                         android:layout_gravity="center"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="Total number of subjects: "
                         android:textColor="@color/black"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
+
                     <TextView
                         android:id="@+id/timetable_subjects_count_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:layout_marginLeft="10dp"
+                        android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -199,38 +203,41 @@
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="5dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
                         android:layout_gravity="center"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="Total number of cliques: "
                         android:textColor="@color/black"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
+
                     <TextView
                         android:id="@+id/timetable_cliques_count_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:layout_marginLeft="10dp"
+                        android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/timetable_result_tv"
-                    android:paddingHorizontal="5dp"
-                    android:paddingVertical="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:text=""
                     android:layout_gravity="center"
-                    android:lineSpacingExtra="5dp"
+                    android:fontFamily="sans-serif"
                     android:gravity="center"
+                    android:lineSpacingExtra="5dp"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="10dp"
+                    android:text=""
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
             </LinearLayout>
         </ScrollView>
 
@@ -241,7 +248,7 @@
         android:id="@+id/timetable_btns_layout"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_marginVertical="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginHorizontal="5dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal">

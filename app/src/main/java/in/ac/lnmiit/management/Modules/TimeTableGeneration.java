@@ -4,12 +4,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.View;
@@ -47,6 +51,13 @@ public class TimeTableGeneration extends AppCompatActivity {
     ScrollView timetable_result_view;
     static HSSFSheet sheet;
     static int[] studentCount;
+    String[] permissions = new String[]{
+            Manifest.permission.INTERNET,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.MANAGE_EXTERNAL_STORAGE
+    };
+    private int reqCode = 11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,7 +191,16 @@ public class TimeTableGeneration extends AppCompatActivity {
 //        });
 //    }
 
-
+    private boolean isPermissionGranted(){
+        for(String permission : permissions){
+            if (ActivityCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED)
+                return false;
+        }
+        return true;
+    }
+    private void askPermissions(){
+        ActivityCompat.requestPermissions(this, permissions, reqCode);
+    }
     private void selectfile() {
         // select the file from the file storage
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -204,7 +224,11 @@ public class TimeTableGeneration extends AppCompatActivity {
                     return;
                 }
 
-                File myFile = new File(uri.getPath());
+                String downloadsPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
+
+                // String path = getFilesDir().getAbsolutePath();
+
+                File myFile = new File(downloadsPath + "/timetable.xls");
 
                 Log.e("TAG", "Path: " + uri.getPath());
                 Log.e("TAG", "Exists: " + myFile.exists());
@@ -241,18 +265,27 @@ public class TimeTableGeneration extends AppCompatActivity {
         // Create the graph given in the above figure
         try {
             Log.e("TAG", "Finding Cliques");
-            InputStream myInput;
-            // initialize asset manager
-            AssetManager assetManager = getAssets();
-            //  open excel file name as timetable.xls
-            myInput = assetManager.open("timetable.xls");
-            // Create a POI File System object
-            POIFSFileSystem myFileSystem = new POIFSFileSystem(myInput);
-
-            // FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file
 
             // Create a POIFSFileSystem object
-            // POIFSFileSystem myFileSystem = new POIFSFileSystem(fis);
+            POIFSFileSystem myFileSystem;
+
+            try{
+                Log.e("TAG", "Downloads file");
+                Log.e("TAG", file.exists()+"");
+                FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file
+                myFileSystem = new POIFSFileSystem(fis);
+            }
+            catch (Exception e){
+                Log.e("TAG", "Exception: "+e);
+                Log.e("TAG", "Assets file");
+                InputStream myInput;
+                // initialize asset manager
+                AssetManager assetManager = getAssets();
+                // Open excel file name as timetable.xls
+                myInput = assetManager.open("timetable.xls");
+                // Create a POI File System object
+                myFileSystem = new POIFSFileSystem(myInput);
+            }
 
             // Creating Workbook instance that refers to .xls file
             HSSFWorkbook wb = new HSSFWorkbook(myFileSystem);
@@ -318,7 +351,7 @@ public class TimeTableGeneration extends AppCompatActivity {
                 }
             }
 
-            int cliq = Graph.Findclique(v);
+            int cliq = Graph.findClique(v);
 
             timetable_subjects_count_tv.setText(v+"");
             timetable_cliques_count_tv.setText(cliq+"");
@@ -326,19 +359,27 @@ public class TimeTableGeneration extends AppCompatActivity {
             timetable_result_view.setVisibility(View.VISIBLE);
 
             Log.e("TAG", "Total number of clique: " + cliq);
-            Toast.makeText(TimeTableGeneration.this, "Total number of clique: " + cliq, Toast.LENGTH_SHORT).show();
+            // Toast.makeText(TimeTableGeneration.this, "Total number of clique: " + cliq, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.e("TAG", "Some error while reading excel file" + e);
             e.printStackTrace();
         }
         timetableProgressBar.setVisibility(View.INVISIBLE);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(!isPermissionGranted())
+            askPermissions();
+    }
 }
 
+
 class Graph {
+    // result containing the number of cliques, subjects and total students in each clique
     static StringBuilder res;
-    // TreeSet is used to get clear
-    // understand of graph.
+    // TreeSet is used to get clear understanding of graph.
     static HashMap<Integer, TreeSet<Integer>> graph;
     static HSSFRow header;
 
@@ -365,7 +406,7 @@ class Graph {
     public static boolean[] visited;
     static Map<Integer, Integer> V = new HashMap<>();
 
-    public static int Findclique(int no_of_subject) {
+    public static int findClique(int no_of_subject) {
         int v = no_of_subject;
         visited = new boolean[v + 1];
         int subject = 1;
@@ -380,7 +421,7 @@ class Graph {
                 subject++;
             } else {
                 Stack<Integer> clique = new Stack<Integer>();
-                makeclique(subject, clique);
+                makeClique(subject, clique);
                 count++;
                 subject++;
                 res.append("Clique ").append(count).append(": ");
@@ -409,10 +450,10 @@ class Graph {
         return count;
     }
 
-    public static void makeclique(int subject, Stack<Integer> clique) {
+    public static void makeClique(int subject, Stack<Integer> clique) {
         clique.add(subject);
         visited[subject] = true;
-        Map<Integer, Integer> adjacent = FindAdjacent(subject);
+        Map<Integer, Integer> adjacent = findAdjacent(subject);
 
         Map<Integer, Integer> newV = new HashMap<>();
 
@@ -432,12 +473,12 @@ class Graph {
                 }
             }
 
-            makeclique(max_degree_node, clique);
+            makeClique(max_degree_node, clique);
         }
 
     }
 
-    public static Map<Integer, Integer> FindAdjacent(int subject) {
+    public static Map<Integer, Integer> findAdjacent(int subject) {
         Map<Integer, Integer> adjacent = new HashMap<>();
         if (graph.containsKey(subject)) {
             Iterator<Integer> set = graph.get(subject).iterator();
