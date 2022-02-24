@@ -197,7 +197,7 @@ public class DispensaryManagement extends AppCompatActivity {
                         String medicalIssue = studentAppointmentMedicalIssueEditText.getText().toString();
                         String date = student_appointment_date.getText().toString();
                         if(selectedId==-1 || date.isEmpty() || medicalIssue.isEmpty()){
-                            Toast.makeText(DispensaryManagement.this, "No field can be empty", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DispensaryManagement.this, "No field can be empty!", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             Toast.makeText(DispensaryManagement.this, "Medical Issue: "+medicalIssue+"\nSelected Timing: "+appointmentTimingModelList.get(selectedId).getDoctorTiming(), Toast.LENGTH_SHORT).show();
