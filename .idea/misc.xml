@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/drawable/notif_icon.xml" value="0.1415" />
         <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/drawable/progress.xml" value="0.129" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_dispensary_management.xml" value="0.264" />
         <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_time_table_generation.xml" value="0.2" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/menu/dispensarymenu.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/drawable/bg_drawer.xml" value="0.26614583333333336" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/drawable/onboardingleft.xml" value="0.26614583333333336" />
