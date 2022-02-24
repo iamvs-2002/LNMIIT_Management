@@ -19,24 +19,8 @@
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content">
-                <!--            <RadioButton-->
-                <!--                android:id="@+id/student_appointment_doctor1"-->
-                <!--                android:layout_width="wrap_content"-->
-                <!--                android:text="Radio Button 1"-->
-                <!--                android:textSize="18sp"-->
-                <!--                android:fontFamily="sans-serif-medium"-->
-                <!--                android:layout_height="wrap_content"/>-->
-                <!--            <RadioButton-->
-                <!--                android:id="@+id/student_appointment_doctor2"-->
-                <!--                android:text="Radio Button 1"-->
-                <!--                android:textSize="18sp"-->
-                <!--                android:fontFamily="sans-serif-medium"-->
-                <!--                android:layout_width="wrap_content"-->
-                <!--                android:layout_height="wrap_content"/>-->
             </RadioGroup>
-
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
                 android:padding="10dp"
                 android:isScrollContainer="true"
                 style="@style/Widget.AppTheme.TextInputLayoutList"

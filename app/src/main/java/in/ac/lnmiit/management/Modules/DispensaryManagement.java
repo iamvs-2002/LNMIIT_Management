@@ -7,21 +7,30 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import in.ac.lnmiit.management.Modules.Classes.DispensaryManagement.AppointmentTimingAdapter;
 import in.ac.lnmiit.management.Modules.Classes.DispensaryManagement.AppointmentTimingModel;
@@ -31,8 +40,8 @@ public class DispensaryManagement extends AppCompatActivity {
 
     private Toolbar toolbar;
     LinearLayout studentLayout, doctorLayout;
-    CardView student_appointment, student_medicalcertificate, student_equipmentstatus;
-    CardView doctor_appointment, doctor_medicalcertificate, doctor_equipmentstatus, doctor_stockstatus;
+    CardView student_appointment, student_medicalcertificate, student_appointment_status, student_medicalcertificate_status;
+    CardView doctor_appointment, doctor_medicalcertificate, doctor_stockstatus;
 
     RecyclerView student_dispensary_card_appointment_timing_recyclerView, doctor_dispensary_card_appointment_timing_recyclerView;
     static List<AppointmentTimingModel> appointmentTimingModelList;
@@ -49,10 +58,10 @@ public class DispensaryManagement extends AppCompatActivity {
         doctorLayout = findViewById(R.id.doctor_dispensary_layout);
 
         student_appointment = findViewById(R.id.student_dispensary_card_appointment);
-        student_equipmentstatus = findViewById(R.id.student_dispensary_card_equipmentstatus);
         student_medicalcertificate = findViewById(R.id.student_dispensary_card_medicalcertificate);
+        student_appointment_status = findViewById(R.id.student_dispensary_card_appointment_status);
+        student_medicalcertificate_status = findViewById(R.id.student_dispensary_card_medicalcertificate_status);
         doctor_appointment = findViewById(R.id.doctor_dispensary_card_appointment);
-        doctor_equipmentstatus = findViewById(R.id.doctor_dispensary_card_equipmentstatus);
         doctor_medicalcertificate = findViewById(R.id.doctor_dispensary_card_medicalcertificate);
         doctor_stockstatus = findViewById(R.id.doctor_dispensary_card_stockstatus);
         student_dispensary_card_appointment_timing_recyclerView = findViewById(R.id.student_dispensary_card_appointment_timing_recyclerView);
@@ -83,10 +92,16 @@ public class DispensaryManagement extends AppCompatActivity {
                 showAlertDialogBox(1);
             }
         });
-        student_equipmentstatus.setOnClickListener(new View.OnClickListener() {
+        student_appointment_status.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAlertDialogBox(2);
+            }
+        });
+        student_medicalcertificate_status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAlertDialogBox(3);
             }
         });
         doctor_appointment.setOnClickListener(new View.OnClickListener() {
@@ -101,16 +116,10 @@ public class DispensaryManagement extends AppCompatActivity {
                 showAlertDialogBox(11);
             }
         });
-        doctor_equipmentstatus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showAlertDialogBox(12);
-            }
-        });
         doctor_stockstatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showAlertDialogBox(13);
+                showAlertDialogBox(12);
             }
         });
     }
@@ -132,7 +141,7 @@ public class DispensaryManagement extends AppCompatActivity {
         View customLayout;
         switch (n) {
             case 0:
-                Toast.makeText(this, "Student Appointment", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "Student Appointment", Toast.LENGTH_SHORT).show();
                 // set the custom layout
                 builder.setTitle("Book an Appointment");
                 customLayout = getLayoutInflater().inflate(R.layout.student_appointment, null);
@@ -156,7 +165,7 @@ public class DispensaryManagement extends AppCompatActivity {
                         int selectedId = studentAppointmentRadioGroup.getCheckedRadioButtonId();
                         String medicalIssue = studentAppointmentMedicalIssueEditText.getText().toString();
                         if(selectedId==-1){
-                            Toast.makeText(DispensaryManagement.this, "Select a timing", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DispensaryManagement.this, "Kindly select a timing", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             Toast.makeText(DispensaryManagement.this, "Medical Issue: "+medicalIssue+"\nSelected Timing: "+appointmentTimingModelList.get(selectedId).getDoctorTiming(), Toast.LENGTH_SHORT).show();
@@ -165,32 +174,81 @@ public class DispensaryManagement extends AppCompatActivity {
                 });
                 break;
             case 1:
-                Toast.makeText(this, "Student Medical Certificate", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "Student Medical Certificate", Toast.LENGTH_SHORT).show();
                 builder.setTitle("Request Medical Certificate");
                 customLayout = getLayoutInflater().inflate(R.layout.student_medicalcertificate, null);
                 builder.setView(customLayout);
+
+                TextInputEditText studentMedCertMedicalIssueEditText = customLayout.findViewById(R.id.student_medcert_medical_issue_tv);
+                TextInputEditText studentMedCertStartDateEditText = customLayout.findViewById(R.id.student_medcert_start_date);
+                TextInputEditText studentMedCertEndDateEditText = customLayout.findViewById(R.id.student_medcert_end_date);
+
+                // Calender object to get the current date
+                final Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR);
+                int mMonth = c.get(Calendar.MONTH);
+                int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+                studentMedCertStartDateEditText.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        DatePickerDialog datePickerDialog = new DatePickerDialog(DispensaryManagement.this,
+                                new DatePickerDialog.OnDateSetListener() {
+                                    @Override
+                                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                        studentMedCertStartDateEditText.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                    }
+                                }, mYear, mMonth, mDay);
+                        datePickerDialog.show();
+                    }
+                });
+                studentMedCertEndDateEditText.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        DatePickerDialog datePickerDialog = new DatePickerDialog(DispensaryManagement.this,
+                                new DatePickerDialog.OnDateSetListener() {
+                                    @Override
+                                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                        studentMedCertEndDateEditText.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                    }
+                                }, mYear, mMonth, mDay);
+                        datePickerDialog.show();
+                    }
+                });
+
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        String medicalIssue = studentMedCertMedicalIssueEditText.getText().toString();
+                        String startDate = studentMedCertStartDateEditText.getText().toString();
+                        String endDate = studentMedCertEndDateEditText.getText().toString();
 
+                        long days = findDifference(startDate, endDate);
+                        if(days<0){
+                            Toast.makeText(DispensaryManagement.this, "End date cannot be before Start date!", Toast.LENGTH_SHORT).show();
+                        }
+                        if(startDate.isEmpty() || endDate.isEmpty() || medicalIssue.isEmpty()){
+                            Toast.makeText(DispensaryManagement.this, "No field can be empty!", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(DispensaryManagement.this, "Medical Issue: "+medicalIssue+"\nNumber of Days: "+days, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 break;
             case 2:
-                Toast.makeText(this, "Student Equipment Status", Toast.LENGTH_SHORT).show();
-                builder.setTitle("Equipment Status");
-                customLayout = getLayoutInflater().inflate(R.layout.student_equipmentstatus, null);
+                builder.setTitle("Appointment Status");
+                customLayout = getLayoutInflater().inflate(R.layout.student_appointment_status, null);
                 builder.setView(customLayout);
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
+                break;
+            case 3:
+                builder.setTitle("Medical Certificate Status");
+                customLayout = getLayoutInflater().inflate(R.layout.student_medicalcertificate_status, null);
+                builder.setView(customLayout);
                 break;
             case 10:
-                Toast.makeText(this, "Doctor Appointment", Toast.LENGTH_SHORT).show();
-                builder.setTitle("Appointment Status");
+                // Toast.makeText(this, "Doctor Appointment", Toast.LENGTH_SHORT).show();
+                builder.setTitle("Manage Appointments");
                 customLayout = getLayoutInflater().inflate(R.layout.doctor_appointment, null);
                 builder.setView(customLayout);
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -201,8 +259,8 @@ public class DispensaryManagement extends AppCompatActivity {
                 });
                 break;
             case 11:
-                Toast.makeText(this, "Doctor Medical Certificate", Toast.LENGTH_SHORT).show();
-                builder.setTitle("Approve/Reject Medical Certificate Requests");
+                // Toast.makeText(this, "Doctor Medical Certificate", Toast.LENGTH_SHORT).show();
+                builder.setTitle("Manage Medical Certificates");
                 customLayout = getLayoutInflater().inflate(R.layout.doctor_medicalcertificate, null);
                 builder.setView(customLayout);
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -213,28 +271,10 @@ public class DispensaryManagement extends AppCompatActivity {
                 });
                 break;
             case 12:
-                Toast.makeText(this, "Doctor Equipment Status", Toast.LENGTH_SHORT).show();
-                builder.setTitle("Equipment Status");
-                customLayout = getLayoutInflater().inflate(R.layout.doctor_equipmentstatus, null);
-                builder.setView(customLayout);
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                break;
-            case 13:
-                Toast.makeText(this, "Doctor Stock Status", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "Doctor Stock Status", Toast.LENGTH_SHORT).show();
                 builder.setTitle("Stock Status");
                 customLayout = getLayoutInflater().inflate(R.layout.doctor_stockstatus, null);
                 builder.setView(customLayout);
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
                 break;
         }
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -247,6 +287,7 @@ public class DispensaryManagement extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -269,5 +310,21 @@ public class DispensaryManagement extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+    static long findDifference(String start_date, String end_date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        long difference_In_Days = 0;
+        try {
+            Date d1 = sdf.parse(start_date);
+            Date d2 = sdf.parse(end_date);
+
+            long difference_In_Time = d2.getTime() - d1.getTime();
+            difference_In_Days = (difference_In_Time / (1000 * 60 * 60 * 24)) % 365;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return difference_In_Days;
     }
 }

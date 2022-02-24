@@ -1,23 +1,23 @@
 package in.ac.lnmiit.management.Modules.Classes.DispensaryManagement;
 
 public class AppointmentTimingModel {
-    String doctorName;
+    String doctorType;
     String doctorTiming;
 
     public AppointmentTimingModel() {
     }
 
     public AppointmentTimingModel(String doctorName, String doctorTiming) {
-        this.doctorName = doctorName;
+        this.doctorType = doctorName;
         this.doctorTiming = doctorTiming;
     }
 
     public String getDoctorName() {
-        return doctorName;
+        return doctorType;
     }
 
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+    public void setDoctorName(String doctorType) {
+        this.doctorType = doctorType;
     }
 
     public String getDoctorTiming() {

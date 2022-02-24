@@ -34,7 +34,7 @@ public class AppointmentTimingAdapter extends RecyclerView.Adapter<AppointmentTi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AppointmentTimingModel model = list.get(position);
-        holder.doctorName.setText(model.getDoctorName());
+        holder.doctorType.setText(model.getDoctorName());
         holder.doctorTiming.setText(model.getDoctorTiming());
     }
 
@@ -44,11 +44,11 @@ public class AppointmentTimingAdapter extends RecyclerView.Adapter<AppointmentTi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView doctorName;
+        public TextView doctorType;
         public TextView doctorTiming;
         public ViewHolder(View itemView) {
             super(itemView);
-            this.doctorName = (TextView) itemView.findViewById(R.id.doctor_name);
+            this.doctorType = (TextView) itemView.findViewById(R.id.doctor_name);
             this.doctorTiming = (TextView) itemView.findViewById(R.id.doctor_timing);
         }
     }
