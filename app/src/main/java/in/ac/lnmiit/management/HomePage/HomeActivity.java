@@ -126,4 +126,10 @@ public class HomeActivity extends AppCompatActivity {
         }
         pressedTime = System.currentTimeMillis();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+    }
 }

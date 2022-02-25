@@ -58,6 +58,8 @@ public class DispensaryManagement extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Dispensary Management");
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         studentLayout = findViewById(R.id.student_dispensary_layout);
         doctorLayout = findViewById(R.id.doctor_dispensary_layout);
@@ -413,5 +415,10 @@ public class DispensaryManagement extends AppCompatActivity {
             e.printStackTrace();
         }
         return difference_In_Days;
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 }

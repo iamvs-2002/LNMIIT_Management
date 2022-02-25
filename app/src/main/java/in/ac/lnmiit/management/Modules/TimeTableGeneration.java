@@ -67,6 +67,8 @@ public class TimeTableGeneration extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Time Table");
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         semestersSpinner = findViewById(R.id.semester_spinner);
         programsSpinner = findViewById(R.id.program_spinner);
@@ -359,6 +361,7 @@ public class TimeTableGeneration extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         if(!isPermissionGranted())
             askPermissions();
     }
