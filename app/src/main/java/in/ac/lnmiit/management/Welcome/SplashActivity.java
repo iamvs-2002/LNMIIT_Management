@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.View;
 
 import in.ac.lnmiit.management.HomePage.HomeActivity;
+import in.ac.lnmiit.management.Login.LoginActivity;
 import in.ac.lnmiit.management.R;
 
 /*
@@ -28,13 +29,13 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                launchHomeScreen();
+                launchLoginScreen();
             }
         }, TIME_OUT);
     }
 
-    private void launchHomeScreen() {
-        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+    private void launchLoginScreen() {
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
         finish();
     }
