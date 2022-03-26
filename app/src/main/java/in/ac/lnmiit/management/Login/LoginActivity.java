@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signInWithGoogle() {
+        // implement sign in with google
     }
 
     @Override
