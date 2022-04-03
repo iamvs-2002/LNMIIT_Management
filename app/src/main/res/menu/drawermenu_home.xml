@@ -36,4 +36,9 @@
         android:title="About Us"
         android:icon="@drawable/aboutus">
     </item>
+    <item
+        android:id="@+id/menu_logout"
+        android:title="Log Out"
+        android:icon="@drawable/ic_baseline_logout_24">
+    </item>
 </menu>
