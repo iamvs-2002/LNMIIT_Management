@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="in.ac.lnmiit.management">
+    package="in.ac.lnmiit.management" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,27 +10,30 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LNMIITManagement">
+        android:theme="@style/Theme.LNMIITManagement" >
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
         <activity
             android:name=".Modules.DispensaryManagement"
             android:exported="false"
-            android:parentActivityName=".HomePage.HomeActivity"/>
+            android:parentActivityName=".HomePage.HomeActivity" />
         <activity
             android:name=".Modules.StaffLeaveManagement"
             android:exported="false"
-            android:parentActivityName=".HomePage.HomeActivity"/>
+            android:parentActivityName=".HomePage.HomeActivity" />
         <activity
             android:name=".Modules.HostelLeaveManagement"
             android:exported="false"
-            android:parentActivityName=".HomePage.HomeActivity"/>
+            android:parentActivityName=".HomePage.HomeActivity" />
         <activity
             android:name=".Modules.BusService"
             android:exported="false"
-            android:parentActivityName=".HomePage.HomeActivity"/>
+            android:parentActivityName=".HomePage.HomeActivity" />
         <activity
             android:name=".Modules.TimeTableGeneration"
             android:exported="false"
-            android:parentActivityName=".HomePage.HomeActivity"/>
+            android:parentActivityName=".HomePage.HomeActivity" />
         <activity
             android:name=".HomePage.HomeActivity"
             android:exported="false" />

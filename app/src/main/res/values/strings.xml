@@ -16,4 +16,9 @@
 
     <string name="slide_4_title">Leave Management</string>
     <string name="slide_4_desc">Ask for a leave at one click.</string>
+
+    <string-array name="Leaves">
+        <item>CL</item>
+        <item>Sick</item>
+    </string-array>
 </resources>
