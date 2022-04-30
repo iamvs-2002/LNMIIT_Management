@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="in.ac.lnmiit.management">
+    package="in.ac.lnmiit.management" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -14,7 +14,10 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LNMIITManagement">
+        android:theme="@style/Theme.LNMIITManagement" >
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
         <activity
             android:name=".Login.LoginActivity"
             android:exported="false" />

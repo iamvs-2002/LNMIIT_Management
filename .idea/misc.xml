@@ -54,10 +54,20 @@
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/welcome/layout/screen4.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/menu/drawermenu.xml" value="0.4" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/menu/drawermenu_home.xml" value="0.2" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/drawable/bg1.xml" value="0.1" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/dropdown_leavesapply.xml" value="0.1" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/fragment_allleaves_bottomsheet.xml" value="0.2" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/fragment_applyleaves_bottomsheet.xml" value="0.264" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/fragment_tab_all_leave.xml" value="0.25" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/fragment_tab_all_leaves.xml" value="0.176" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/fragment_tab_cl_leaves.xml" value="0.25" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/fragment_tab_sick_leaves.xml" value="0.25" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/modules/layout/activity_staff_leave_management.xml" value="0.25" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
