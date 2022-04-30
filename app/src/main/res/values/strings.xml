@@ -21,4 +21,7 @@
         <item>CL</item>
         <item>Sick</item>
     </string-array>
+    <string name="login_title">Login</string>
+    <string name="login_text">Dear user, kindly login using the institute email-id to access the application.</string>
+
 </resources>
