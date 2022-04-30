@@ -3,9 +3,11 @@
     package="in.ac.lnmiit.management" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
 
     <application
         android:allowBackup="true"
@@ -20,6 +22,21 @@
             android:exported="false" />
         <activity
             android:name=".Login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Bus_service.bus_booking_ticket"
+            android:exported="false" />
+        <activity
+            android:name=".Bus_service.bus_booking"
+            android:exported="false" />
+        <activity
+            android:name=".Bus_service.BusService_Feedback"
+            android:exported="false" />
+        <activity
+            android:name=".Bus_service.bus_service_past_booking"
+            android:exported="false" />
+        <activity
+            android:name=".Bus_service.BusServiceUserViewSchedule"
             android:exported="false" />
         <activity
             android:name=".Modules.DispensaryManagement"
