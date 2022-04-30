@@ -26,6 +26,32 @@
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/layouts/welcome/layout/screen4.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/menu/drawermenu.xml" value="0.4" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/menu/drawermenu_home.xml" value="0.2" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.262" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/drawable/ic_launcher_background.xml" value="0.262" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/BUS_SERVICE/layout/activity_bus_booking.xml" value="0.3183183183183183" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/BUS_SERVICE/layout/activity_bus_booking_ticket.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/BUS_SERVICE/layout/activity_bus_service_feedback.xml" value="0.3625" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/BUS_SERVICE/layout/activity_bus_service_past_booking.xml" value="0.3625" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/BUS_SERVICE/layout/activity_bus_service_previous_booking.xml" value="0.18787878787878787" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/BUS_SERVICE/layout/activity_bus_service_user_booking.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/BUS_SERVICE/layout/activity_bus_service_user_view_schedule.xml" value="0.3625" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/BUS_SERVICE/layout/bus_service_user_booking.xml" value="0.3625" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/BUS_SERVICE/layout/card_view_bus_homepage.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/BUS_SERVICE/layout/cardview_bus_schedule.xml" value="0.3625" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/BUS_SERVICE/layout/cardview_view_schedule.xml" value="0.3625" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/BUS_SERVICE/layout/cardviewpreviousbooking.xml" value="0.2164855072463768" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/BUS_SERVICE/layout/cardviewpreviousbookinh.xml" value="0.3625" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/activity_bus_service.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/activity_bus_service_admin.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/activity_bus_service_user.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/activity_home.xml" value="0.3625" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/bus_service.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/bus_service_user_card_home.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/module_item.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/modules/layout/activity_bus_service.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/modules/layout/activity_dispensary_management.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/modules/layout/activity_hostel_leave_management.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/toolbar/layout/toolbar.xml" value="0.3625" />
       </map>
     </option>
   </component>

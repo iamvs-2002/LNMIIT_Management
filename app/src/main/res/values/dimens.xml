@@ -12,4 +12,5 @@
     <dimen name="onboarding_anim_maxheight">130dp</dimen>
     <dimen name="anim_width">200dp</dimen>
     <dimen name="anim_height">200dp</dimen>
+
 </resources>
