@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 
 import in.ac.lnmiit.management.HomePage.HomeActivity;
+import in.ac.lnmiit.management.Login.LoginActivity;
 import in.ac.lnmiit.management.R;
 
 /*
@@ -15,7 +17,7 @@ Splash Screen - containing name, logo and an animation
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static int TIME_OUT = 2*1000;
+    private static int TIME_OUT = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +29,20 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                launchHomeScreen();
+                launchLoginScreen();
             }
         }, TIME_OUT);
     }
 
-    private void launchHomeScreen() {
-        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+    private void launchLoginScreen() {
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 }

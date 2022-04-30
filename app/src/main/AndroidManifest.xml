@@ -2,41 +2,48 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.ac.lnmiit.management">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LNMIITManagement">
         <activity
+            android:name=".Login.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".Modules.DispensaryManagement"
             android:exported="false"
-            android:parentActivityName=".HomePage.HomeActivity"/>
+            android:parentActivityName=".HomePage.HomeActivity" />
         <activity
             android:name=".Modules.StaffLeaveManagement"
             android:exported="false"
-            android:parentActivityName=".HomePage.HomeActivity"/>
+            android:parentActivityName=".HomePage.HomeActivity" />
         <activity
             android:name=".Modules.HostelLeaveManagement"
             android:exported="false"
-            android:parentActivityName=".HomePage.HomeActivity"/>
+            android:parentActivityName=".HomePage.HomeActivity" />
         <activity
             android:name=".Modules.BusService"
             android:exported="false"
-            android:parentActivityName=".HomePage.HomeActivity"/>
+            android:parentActivityName=".HomePage.HomeActivity" />
         <activity
             android:name=".Modules.TimeTableGeneration"
             android:exported="false"
-            android:parentActivityName=".HomePage.HomeActivity"/>
+            android:parentActivityName=".HomePage.HomeActivity" />
         <activity
             android:name=".HomePage.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".Welcome.OnboardingActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
