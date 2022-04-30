@@ -4,6 +4,7 @@
     <item
         android:id="@+id/menu_timetable"
         android:title="Time Table"
+        android:visible="false"
         android:icon="@drawable/timetable">
     </item>
     <item

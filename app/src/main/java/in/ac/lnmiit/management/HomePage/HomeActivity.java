@@ -3,16 +3,21 @@ package in.ac.lnmiit.management.HomePage;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ShareCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -131,11 +136,11 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case R.id.menu_shareapp:
                         drawerLayout.closeDrawer(Gravity.LEFT);
-                        Toast.makeText(getApplicationContext(), "Share Application", Toast.LENGTH_SHORT).show();
+                        shareIt();
                         break;
                     case R.id.menu_aboutus:
                         drawerLayout.closeDrawer(Gravity.LEFT);
-                        Toast.makeText(getApplicationContext(), "About Us", Toast.LENGTH_SHORT).show();
+                        openPopUpWindow();
                         break;
                     case R.id.menu_logout:
                         drawerLayout.closeDrawer(Gravity.LEFT);
@@ -146,6 +151,64 @@ public class HomeActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    String shareurl;
+    private void shareIt() {
+        shareurl = "www.google.com";
+        ShareCompat.IntentBuilder.from(HomeActivity.this)
+                .setType("text/plain")
+                .setChooserTitle("Share via...")
+                .setText(shareurl)
+                .startChooser();
+//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("shareurl");
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                shareurl = snapshot.getValue(String.class);
+//                if(shareurl==null || shareurl.isEmpty()){
+//                    Toast.makeText(HomeActivity.this, "Error: Please try again", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(HomeActivity.this, "Error: Please try again", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+    }
+
+    TextView mail;
+    private void openPopUpWindow() {
+
+        LayoutInflater layoutInflater = (LayoutInflater) HomeActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View customView = layoutInflater.inflate(R.layout.popup,null);
+
+        mail = customView.findViewById(R.id.email);
+
+        mail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Intent.ACTION_SEND);
+                String[] recipients={mail.getText().toString()};
+                intent.putExtra(Intent.EXTRA_EMAIL, recipients);
+                intent.putExtra(Intent.EXTRA_SUBJECT,"Regarding "+getResources().getString(R.string.app_name)+" app");
+                intent.setType("text/html");
+                intent.setPackage("com.google.android.gm");
+                startActivity(Intent.createChooser(intent, "Send mail using"));
+            }
+        });
+
+        PopupWindow popupWindow = new PopupWindow(customView, DrawerLayout.LayoutParams.WRAP_CONTENT, DrawerLayout.LayoutParams.WRAP_CONTENT);
+
+        //display the popup window
+        popupWindow.showAtLocation(drawerLayout, Gravity.CENTER, 0, 0);
+        popupWindow.setHeight(700);
+        popupWindow.setWidth(200);
+        popupWindow.setFocusable(true);
+        popupWindow.update();
     }
 
     private void signOut() {

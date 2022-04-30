@@ -1,4 +1,4 @@
-package in.ac.lnmiit.management.Modules;
+package in.ac.lnmiit.management.Modules.Classes.StaffLeaveManagement;
 
 import android.os.Bundle;
 
@@ -7,19 +7,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import in.ac.lnmiit.management.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TabAllLeaves#newInstance} factory method to
+ * Use the {@link TabClLeaves#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TabAllLeaves extends Fragment {
+public class TabClLeaves extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,7 +26,7 @@ public class TabAllLeaves extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public TabAllLeaves() {
+    public TabClLeaves() {
         // Required empty public constructor
     }
 
@@ -40,17 +36,18 @@ public class TabAllLeaves extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TabAllLeaves.
+     * @return A new instance of fragment TabClLeaves.
      */
     // TODO: Rename and change types and number of parameters
-    public static TabAllLeaves newInstance(String param1, String param2) {
-        TabAllLeaves fragment = new TabAllLeaves();
+    public static TabClLeaves newInstance(String param1, String param2) {
+        TabClLeaves fragment = new TabClLeaves();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +61,6 @@ public class TabAllLeaves extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab_all_leaves, container, false);
+        return inflater.inflate(R.layout.fragment_tab_cl_leaves, container, false);
     }
 }

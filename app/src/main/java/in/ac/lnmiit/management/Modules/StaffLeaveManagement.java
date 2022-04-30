@@ -6,14 +6,13 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import in.ac.lnmiit.management.Modules.Classes.StaffLeaveManagement.ViewPager2FragmentAdapter;
+import in.ac.lnmiit.management.Modules.Classes.StaffLeaveManagement.applyleaves_bottomsheet;
 import in.ac.lnmiit.management.R;
 
 public class StaffLeaveManagement extends AppCompatActivity {
