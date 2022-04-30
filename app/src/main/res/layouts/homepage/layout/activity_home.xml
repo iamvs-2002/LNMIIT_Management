@@ -13,17 +13,66 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <include
             layout="@layout/toolbar"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_marginTop="?attr/actionBarSize"
+            android:orientation="vertical"
             android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:id="@+id/home_personNameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="20dp"
+                android:paddingHorizontal="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/home_personNameTV"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:textStyle="bold"
+                    android:text="User"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text=","
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/home_progressBar"/>
+
             <WebView
                 android:id="@+id/home_webView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@id/home_personNameLayout"
                 android:scrollbars="vertical" />
         </RelativeLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

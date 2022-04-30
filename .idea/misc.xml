@@ -3,6 +3,43 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/drawable/bg_drawer.xml" value="0.1655" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/drawable/notif_icon.xml" value="0.1415" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/drawable/progress.xml" value="0.129" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/drawable/splash_background.xml" value="0.1655" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/dispensary_alertdialog/drawable/popupback.xml" value="0.1615" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/dispensary_alertdialog/layout/doctor_appointment.xml" value="0.20471014492753623" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/dispensary_alertdialog/layout/doctor_medicalcertificate.xml" value="0.15760869565217392" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/dispensary_alertdialog/layout/student_appointment.xml" value="0.176" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/dispensary_alertdialog/layout/student_appointment_status.xml" value="0.20471014492753623" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/dispensary_alertdialog/layout/student_medicalcertificate.xml" value="0.2" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/dispensary_alertdialog/layout/student_medicalcertificate_status.xml" value="0.20471014492753623" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/homepage/layout/activity_home.xml" value="0.2" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/homepage/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/homepage/layout/module_item.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/homepage/layout/popup.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/layout/student_appointment.xml" value="0.20471014492753623" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/login/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_dispensary_management.xml" value="0.176" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_staff_leave_management.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/activity_time_table_generation.xml" value="0.2" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/dispensary_appointmentstatus_item.xml" value="0.20471014492753623" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/dispensary_doctor_manageappointments_item.xml" value="0.152" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/dispensary_doctor_medcertstatus_item.xml" value="0.20471014492753623" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/dispensary_medcertstatus_item.xml" value="0.2" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/dispensary_student_appointmentstatus_item.xml" value="0.264" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/dispensary_student_medcertstatus_item.xml" value="0.20471014492753623" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/dropdown_leavesapply.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/fragment_applyleaves_bottomsheet.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/fragment_tab_all_leaves.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/fragment_tab_cl_leaves.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/fragment_tab_sick_leaves.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/modules/layout/layout_appointment_timing_item.xml" value="0.20471014492753623" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/toolbar/layout/toolbar.xml" value="0.21557971014492755" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/welcome/layout/activity_splash.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/layouts/welcome/layout/screen1.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/menu/dispensarymenu.xml" value="0.25" />
+        <entry key="..\:/Android Studio Projects/LNMIITManagement/app/src/main/res/menu/drawermenu_home.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/drawable/bg_drawer.xml" value="0.26614583333333336" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
         <entry key="..\:/Projects/AndroidStudioProjects/LNMIITManagement/app/src/main/res/drawable/onboardingleft.xml" value="0.26614583333333336" />
@@ -52,10 +89,21 @@
         <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/modules/layout/activity_dispensary_management.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/modules/layout/activity_hostel_leave_management.xml" value="0.358695652173913" />
         <entry key="..\:/Users/MSI/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/toolbar/layout/toolbar.xml" value="0.3625" />
+
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/drawable/bg1.xml" value="0.1" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/dropdown_leavesapply.xml" value="0.1" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/fragment_allleaves_bottomsheet.xml" value="0.2" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/fragment_applyleaves_bottomsheet.xml" value="0.264" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/fragment_tab_all_leave.xml" value="0.25" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/fragment_tab_all_leaves.xml" value="0.176" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/fragment_tab_cl_leaves.xml" value="0.25" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/homepage/layout/fragment_tab_sick_leaves.xml" value="0.25" />
+        <entry key="..\:/Users/sharm/StudioProjects/LNMIIT_Management/app/src/main/res/layouts/modules/layout/activity_staff_leave_management.xml" value="0.25" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

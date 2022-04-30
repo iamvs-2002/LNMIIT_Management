@@ -4,6 +4,7 @@
     <item
         android:id="@+id/menu_timetable"
         android:title="Time Table"
+        android:visible="false"
         android:icon="@drawable/timetable">
     </item>
     <item
@@ -35,5 +36,10 @@
         android:id="@+id/menu_aboutus"
         android:title="About Us"
         android:icon="@drawable/aboutus">
+    </item>
+    <item
+        android:id="@+id/menu_logout"
+        android:title="Log Out"
+        android:icon="@drawable/ic_baseline_logout_24">
     </item>
 </menu>

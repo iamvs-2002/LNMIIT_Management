@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "500082442842",
+    "project_id": "lnmiit-management",
+    "storage_bucket": "lnmiit-management.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500082442842:android:d7dc981af21eb47565ce63",
+        "android_client_info": {
+          "package_name": "in.ac.lnmiit.management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500082442842-qhatuve7onf6rlgap6ir3vagsnql6ck2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.ac.lnmiit.management",
+            "certificate_hash": "6f3731973cff39966bfc8b6bbe98d2d52058f421"
+          }
+        },
+        {
+          "client_id": "500082442842-viujo03rhk0n4ake6agcvls1pl06bph7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwv695GAuvQq22DOrciQDxTF2M9ib9a0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500082442842-viujo03rhk0n4ake6agcvls1pl06bph7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
