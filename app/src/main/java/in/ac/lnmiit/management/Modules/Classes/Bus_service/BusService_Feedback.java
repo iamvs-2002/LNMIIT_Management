@@ -1,4 +1,4 @@
-package in.ac.lnmiit.management.Bus_service;
+package in.ac.lnmiit.management.Modules.Classes.Bus_service;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,21 +12,20 @@ import android.widget.Toast;
 import in.ac.lnmiit.management.Modules.BusService;
 import in.ac.lnmiit.management.R;
 
-public class bus_booking_ticket extends AppCompatActivity {
+public class BusService_Feedback extends AppCompatActivity {
     Button button;
-    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bus_booking_ticket);
-        button = findViewById(R.id.bookbutton);
-        context = getApplicationContext();
+        setContentView(R.layout.activity_bus_service_feedback);
+        Context context = getApplicationContext();
+        button = findViewById(R.id.btnSubmit);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(bus_booking_ticket.this, BusService.class);
-                Toast.makeText(context, "Request Sent!",Toast.LENGTH_LONG).show();
-                bus_booking_ticket.this.startActivity(i);
+                Toast.makeText(context, "Your feedback has been recorded!",Toast.LENGTH_LONG).show();
+                Intent i = new Intent(BusService_Feedback.this, BusService.class);
+                BusService_Feedback.this.startActivity(i);
                 finish();
             }
         });

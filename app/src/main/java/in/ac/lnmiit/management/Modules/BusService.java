@@ -9,10 +9,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import in.ac.lnmiit.management.Bus_service.BusServiceUserViewSchedule;
-import in.ac.lnmiit.management.Bus_service.BusService_Feedback;
-import in.ac.lnmiit.management.Bus_service.bus_booking;
-import in.ac.lnmiit.management.Bus_service.bus_service_past_booking;
+import in.ac.lnmiit.management.Modules.Classes.Bus_service.BusServiceUserViewSchedule;
+import in.ac.lnmiit.management.Modules.Classes.Bus_service.BusService_Feedback;
+import in.ac.lnmiit.management.Modules.Classes.Bus_service.bus_booking;
+import in.ac.lnmiit.management.Modules.Classes.Bus_service.bus_service_past_booking;
 import in.ac.lnmiit.management.R;
 
 public class BusService extends AppCompatActivity {

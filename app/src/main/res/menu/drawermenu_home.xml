@@ -15,6 +15,7 @@
     <item
         android:id="@+id/menu_hostelleave"
         android:title="Hostel Leave"
+        android:visible="false"
         android:icon="@drawable/leave">
     </item>
     <item

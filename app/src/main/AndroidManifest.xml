@@ -24,19 +24,19 @@
             android:name=".Login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".Bus_service.bus_booking_ticket"
+            android:name=".Modules.Classes.Bus_service.bus_booking_ticket"
             android:exported="false" />
         <activity
-            android:name=".Bus_service.bus_booking"
+            android:name=".Modules.Classes.Bus_service.bus_booking"
             android:exported="false" />
         <activity
-            android:name=".Bus_service.BusService_Feedback"
+            android:name=".Modules.Classes.Bus_service.BusService_Feedback"
             android:exported="false" />
         <activity
-            android:name=".Bus_service.bus_service_past_booking"
+            android:name=".Modules.Classes.Bus_service.bus_service_past_booking"
             android:exported="false" />
         <activity
-            android:name=".Bus_service.BusServiceUserViewSchedule"
+            android:name=".Modules.Classes.Bus_service.BusServiceUserViewSchedule"
             android:exported="false" />
         <activity
             android:name=".Modules.DispensaryManagement"

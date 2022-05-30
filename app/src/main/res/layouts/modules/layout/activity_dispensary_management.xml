@@ -8,9 +8,6 @@ android:layout_height="match_parent"
 tools:context=".Modules.HostelLeaveManagement">
 
 
-<include
-    layout="@layout/toolbar"/>
-
     <include
         android:id="@+id/dispensary_toolbar"
         layout="@layout/toolbar"/>
