@@ -3,10 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/Aqua"
-    android:layout_height="match_parent"
-    tools:context=".Bus_service.bus_booking_ticket"
-    >
+    android:background="@color/AliceBlue"
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout2"
@@ -116,6 +114,7 @@
             android:layout_gravity="center"
             android:layout_margin="20dp"
             android:text="Send Request"
+            android:textColor="@color/White"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
